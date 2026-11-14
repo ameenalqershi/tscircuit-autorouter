@@ -52,3 +52,39 @@ test("reject declining graph iteration count to avoid false estimates", () => {
   p.observe(makeGraph(0, 200))
   expect(() => p.observe(makeGraph(1, 180))).toThrow("monotonic")
 })
+
+test("revisited route IDs are measured in disjoint episodes without counting another route", () => {
+  const sampler = new RouteCostSampler()
+  sampler.observe(makeGraph(0, 100))
+  sampler.observe(makeGraph(0, 120))
+  sampler.observe(makeGraph(1, 140))
+  sampler.observe(makeGraph(1, 160))
+  sampler.observe(makeGraph(0, 180))
+  sampler.observe(makeGraph(0, 220))
+  const summary = sampler.summarize() as {
+    topObservedSpans: Array<{ routeId: number; observedSpanLowerBound: number }>
+  }
+  expect(
+    summary.topObservedSpans.find((r) => r.routeId === 0)
+      ?.observedSpanLowerBound,
+  ).toBe(60)
+  expect(
+    summary.topObservedSpans.find((r) => r.routeId === 1)
+      ?.observedSpanLowerBound,
+  ).toBe(20)
+})
+
+test("a route-free interval separates identical route IDs into distinct measurements", () => {
+  const sampler = new RouteCostSampler()
+  sampler.observe(makeGraph(0, 100))
+  sampler.observe(makeGraph(0, 120))
+  const idle = makeGraph(0, 200)
+  idle.state.currentRouteId = undefined as unknown as number
+  sampler.observe(idle)
+  sampler.observe(makeGraph(0, 300))
+  sampler.observe(makeGraph(0, 340))
+  const summary = sampler.summarize() as {
+    topObservedSpans: Array<{ routeId: number; observedSpanLowerBound: number }>
+  }
+  expect(summary.topObservedSpans[0]?.observedSpanLowerBound).toBe(60)
+})
