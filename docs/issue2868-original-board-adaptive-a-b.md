@@ -33,3 +33,20 @@ Keep all source data, solver cost, acceptance gates, iteration budgets and featu
 - The implementation is opt-in and disabled in all default Pipeline9 calls; the 3mm single-route reduced control passed strict/relaxed DRC with the *same output SHA* and stage steps reduced from 330,367 to 1,997. The single-route control is not a full-board proof.
 
 Both tests use isolated fork-only branches. No upstream PR is merged or approved.
+
+## Second A/B completed: four expansions are worse, reject the simple parameter increase
+
+The four-expansion experiment also ran **the original SHA-verified source and the same 8M graph-iteration cap**. It completed with `solved=false`, `failed=true`, `PreparedPortPointRoutingSolver ran out of iterations` and therefore no full-board DRC qualification.
+
+| Fixed 8M graph iteration stop | Two expansions | Four expansions | Difference |
+|---|---:|---:|---:|
+| Current graph route ID | 1710 | **1674** | **-36** routes progressed |
+| Remaining graph routes in queue | 893 | **929** | **+36** still queued |
+| Window widenings | 80 | **142** | +62 |
+| Full unrestricted fallbacks | 38 | **35** | -3 |
+| Prepared stage overall solved | false | false | No improvement |
+| Final full-board strict and relaxed DRC | Not reached | Not reached | No qualification |
+
+The final four-expansion bottleneck was `source_net_639_mst2` (route ID 1674). **Do not use a greater number of corridor expansions as a general fix**: it consumed more work on unsuccessful local searches, yet left more required paths unprocessed. The two-expansion experiment is the better-performing *control* among these two, but neither is an acceptable final-board fix.
+
+**Engineering decision:** stop scalar tuning of locality margins. The next code change requires *per-route attribution* of candidate queue pops, closure/revisit, static reservation rejections, bounding-box rejected neighbors, and cost of unrestricted fallbacks. Identify high-cost routes and verify a specific causal mechanism with a before/after failing test prior to further changes. The geometric corridor remains opt-in, and the production solver is unchanged by default. The changed `package.json` pin to newer test-only / route-requeue lifecycle commits was made **after** these A/B experiments began: the A/B runtime used engine implementation commit `6658a7d` (later commits included regression tests and a same-ID route-epoch fix; no change to the original input). Do not present either experiment as a qualification of the updated runtime pin.
