@@ -1,4 +1,5 @@
 /** Local qualification harness for #2868; deliberately not committed to PRs. */
+import { RouteCostSampler } from "./issue2868-route-cost-sampler"
 import { createHash } from "node:crypto"
 import { readFileSync, writeFileSync } from "node:fs"
 import { performance } from "node:perf_hooks"
@@ -17,8 +18,19 @@ const stepBudget = Number(process.env.MAX_STEPS || 10000000)
 const inputText = readFileSync(file, "utf8")
 const input = JSON.parse(inputText) as SimpleRouteJson
 const inputSha256 = createHash("sha256").update(inputText).digest("hex")
-if (!['471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca','ba7fde466d17743a711573f6d7bbd38f6861efc3672524f0373600452129e071'].includes(inputSha256)) throw Error('Unsupported fixture SHA')
-const cfg={initialMarginMm:Number(process.env.CORRIDOR_MM??3),growthFactor:Number(process.env.CORRIDOR_GROWTH??3),maxExpansions:Number(process.env.CORRIDOR_EXPANSIONS??2),windowIterations:Number(process.env.CORRIDOR_WINDOW_STEPS??10000)}
+if (
+  ![
+    "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca",
+    "ba7fde466d17743a711573f6d7bbd38f6861efc3672524f0373600452129e071",
+  ].includes(inputSha256)
+)
+  throw Error("Unsupported fixture SHA")
+const cfg = {
+  initialMarginMm: Number(process.env.CORRIDOR_MM ?? 3),
+  growthFactor: Number(process.env.CORRIDOR_GROWTH ?? 3),
+  maxExpansions: Number(process.env.CORRIDOR_EXPANSIONS ?? 2),
+  windowIterations: Number(process.env.CORRIDOR_WINDOW_STEPS ?? 10000),
+}
 const solver = new AutoroutingPipelineSolver9_PreloadedTraceGraph(input, {
   progressiveRouteCorridor: cfg,
   cacheProvider: null,
@@ -29,6 +41,7 @@ let steps = 0
 let nextReportAt = start
 let peakRssMB = 0
 let lastStage = "not-started"
+const routeSampler = new RouteCostSampler()
 function status(tag: string) {
   const currentStage =
     solver.pipelineDef[solver.currentPipelineStepIndex]?.solverName ||
@@ -74,16 +87,59 @@ while (
 ) {
   solver.step()
   steps++
+  // Read-only route observations. Approximate costs are lower bounds; no
+  // candidate queue, reservations, costs or route selection are mutated.
+  if ((steps & 511) === 0) {
+    const graph = (
+      solver.portPointPathingSolver as any
+    )?.tinyPipelineSolver?.getSolver?.("solveGraph")
+    const observed = routeSampler.observe(graph)
+    if (observed)
+      console.log(
+        JSON.stringify({
+          ...observed,
+          observedCumulativeWidenings: graph?.corridorStats?.widened ?? null,
+          observedCumulativeUnrestrictedFallbacks:
+            graph?.corridorStats?.fullFallbacks ?? null,
+        }),
+      )
+  }
   if (performance.now() > nextReportAt + 5000) {
-    const graph=(solver.portPointPathingSolver as any)?.tinyPipelineSolver?.getSolver?.("solveGraph")
-    if (graph) console.log(JSON.stringify({tag:'corridor-runtime',solver:graph.constructor.name,iteration:graph.iterations,route:graph.state?.currentRouteId,corridor:graph.corridor?.currentMargin??null,corridorRouteId:graph.corridorRouteId??null,geometrySupported:graph.geometry?.supported,partialRipPlanCount:graph.partialRipRoutePlans?.size,stats:graph.corridorStats??null}))
+    const graph = (
+      solver.portPointPathingSolver as any
+    )?.tinyPipelineSolver?.getSolver?.("solveGraph")
+    if (graph)
+      console.log(
+        JSON.stringify({
+          tag: "corridor-runtime",
+          solver: graph.constructor.name,
+          iteration: graph.iterations,
+          route: graph.state?.currentRouteId,
+          corridor: graph.corridor?.currentMargin ?? null,
+          corridorRouteId: graph.corridorRouteId ?? null,
+          geometrySupported: graph.geometry?.supported,
+          partialRipPlanCount: graph.partialRipRoutePlans?.size,
+          stats: graph.corridorStats ?? null,
+        }),
+      )
     status("progress")
     nextReportAt = performance.now()
   }
 }
+console.log(JSON.stringify(routeSampler.summarize()))
 const final = status("end")
-const graphFinal=(solver.portPointPathingSolver as any)?.tinyPipelineSolver?.getSolver?.("solveGraph")
-console.log(JSON.stringify({tag:"corridor-final",solver:graphFinal?.constructor?.name,iteration:graphFinal?.iterations,stats:graphFinal?.corridorStats??null,route:graphFinal?.state?.currentRouteId??null}))
+const graphFinal = (
+  solver.portPointPathingSolver as any
+)?.tinyPipelineSolver?.getSolver?.("solveGraph")
+console.log(
+  JSON.stringify({
+    tag: "corridor-final",
+    solver: graphFinal?.constructor?.name,
+    iteration: graphFinal?.iterations,
+    stats: graphFinal?.corridorStats ?? null,
+    route: graphFinal?.state?.currentRouteId ?? null,
+  }),
+)
 if (solver.failed) {
   // Forensic-only failure receipt. Avoid materializing giant graph arrays.
   try {
@@ -97,7 +153,15 @@ if (solver.failed) {
         : undefined
     const neverRouted = graphSolver?.getNeverSuccessfullyRoutedRoutes?.()
     const rerip = graphSolver?.getSelectiveReripStats?.()
-    console.log(JSON.stringify({tag:'adaptive-stats',options:cfg,corridorStats:graphSolver?.corridorStats??null,graphIterations:graphSolver?.iterations??null,remainingQueued:graphSolver?.state?.unroutedRoutes?.length??null}))
+    console.log(
+      JSON.stringify({
+        tag: "adaptive-stats",
+        options: cfg,
+        corridorStats: graphSolver?.corridorStats ?? null,
+        graphIterations: graphSolver?.iterations ?? null,
+        remainingQueued: graphSolver?.state?.unroutedRoutes?.length ?? null,
+      }),
+    )
     const selectiveRerip = rerip
       ? {
           lastFailedRouteId: rerip.lastFailedRouteId ?? null,
