@@ -1,0 +1,279 @@
+{
+  "obs": 15623,
+  "sampledRoutes": 376,
+  "transitionEvents": 376,
+  "uniqueIds": 376,
+  "totals": {
+    "top10": 3661824,
+    "top16": 5814272,
+    "top20": 6702592,
+    "top30": 7196672
+  },
+  "percent": {
+    "top10": "45.77",
+    "top16": "72.68",
+    "top20": "83.78",
+    "top30": "89.96"
+  },
+  "top16": [
+    {
+      "routeId": 1508,
+      "firstObservedIteration": 4644617,
+      "lastObservedIteration": 5020937,
+      "observedSpanLowerBound": 376320,
+      "routeName": "source_net_280_mst5"
+    },
+    {
+      "routeId": 1502,
+      "firstObservedIteration": 4263689,
+      "lastObservedIteration": 4636937,
+      "observedSpanLowerBound": 373248,
+      "routeName": "source_net_300_mst5"
+    },
+    {
+      "routeId": 1484,
+      "firstObservedIteration": 3485449,
+      "lastObservedIteration": 3853577,
+      "observedSpanLowerBound": 368128,
+      "routeName": "source_net_328_mst5"
+    },
+    {
+      "routeId": 1216,
+      "firstObservedIteration": 172809,
+      "lastObservedIteration": 538377,
+      "observedSpanLowerBound": 365568,
+      "routeName": "source_net_558_mst13"
+    },
+    {
+      "routeId": 1538,
+      "firstObservedIteration": 5448969,
+      "lastObservedIteration": 5813001,
+      "observedSpanLowerBound": 364032,
+      "routeName": "source_net_232_mst5"
+    },
+    {
+      "routeId": 1356,
+      "firstObservedIteration": 721161,
+      "lastObservedIteration": 1084681,
+      "observedSpanLowerBound": 363520,
+      "routeName": "source_net_347_mst6"
+    },
+    {
+      "routeId": 1363,
+      "firstObservedIteration": 1094921,
+      "lastObservedIteration": 1458441,
+      "observedSpanLowerBound": 363520,
+      "routeName": "source_net_310_mst6"
+    },
+    {
+      "routeId": 1370,
+      "firstObservedIteration": 1504009,
+      "lastObservedIteration": 1867017,
+      "observedSpanLowerBound": 363008,
+      "routeName": "source_net_291_mst6"
+    },
+    {
+      "routeId": 1490,
+      "firstObservedIteration": 3860233,
+      "lastObservedIteration": 4222729,
+      "observedSpanLowerBound": 362496,
+      "routeName": "source_net_319_mst5"
+    },
+    {
+      "routeId": 1377,
+      "firstObservedIteration": 1877257,
+      "lastObservedIteration": 2239241,
+      "observedSpanLowerBound": 361984,
+      "routeName": "source_net_262_mst6"
+    },
+    {
+      "routeId": 1391,
+      "firstObservedIteration": 2652937,
+      "lastObservedIteration": 3014921,
+      "observedSpanLowerBound": 361984,
+      "routeName": "source_net_242_mst6"
+    },
+    {
+      "routeId": 1384,
+      "firstObservedIteration": 2279689,
+      "lastObservedIteration": 2640649,
+      "observedSpanLowerBound": 360960,
+      "routeName": "source_net_252_mst6"
+    },
+    {
+      "routeId": 1478,
+      "firstObservedIteration": 3118857,
+      "lastObservedIteration": 3478793,
+      "observedSpanLowerBound": 359936,
+      "routeName": "source_net_337_mst5"
+    },
+    {
+      "routeId": 1514,
+      "firstObservedIteration": 5029129,
+      "lastObservedIteration": 5388041,
+      "observedSpanLowerBound": 358912,
+      "routeName": "source_net_271_mst5"
+    },
+    {
+      "routeId": 1603,
+      "firstObservedIteration": 6219017,
+      "lastObservedIteration": 6575369,
+      "observedSpanLowerBound": 356352,
+      "routeName": "source_net_634_mst3"
+    },
+    {
+      "routeId": 1623,
+      "firstObservedIteration": 6954761,
+      "lastObservedIteration": 7309065,
+      "observedSpanLowerBound": 354304,
+      "routeName": "source_net_289_mst3"
+    }
+  ],
+  "byNet": [
+    [
+      "source_net_280",
+      {
+        "count": 1,
+        "lowerBound": 376320
+      }
+    ],
+    [
+      "source_net_300",
+      {
+        "count": 1,
+        "lowerBound": 373248
+      }
+    ],
+    [
+      "source_net_328",
+      {
+        "count": 1,
+        "lowerBound": 368128
+      }
+    ],
+    [
+      "source_net_558",
+      {
+        "count": 1,
+        "lowerBound": 365568
+      }
+    ],
+    [
+      "source_net_232",
+      {
+        "count": 1,
+        "lowerBound": 364032
+      }
+    ],
+    [
+      "source_net_347",
+      {
+        "count": 1,
+        "lowerBound": 363520
+      }
+    ],
+    [
+      "source_net_310",
+      {
+        "count": 1,
+        "lowerBound": 363520
+      }
+    ],
+    [
+      "source_net_291",
+      {
+        "count": 1,
+        "lowerBound": 363008
+      }
+    ],
+    [
+      "source_net_319",
+      {
+        "count": 1,
+        "lowerBound": 362496
+      }
+    ],
+    [
+      "source_net_262",
+      {
+        "count": 1,
+        "lowerBound": 361984
+      }
+    ],
+    [
+      "source_net_242",
+      {
+        "count": 1,
+        "lowerBound": 361984
+      }
+    ],
+    [
+      "source_net_252",
+      {
+        "count": 1,
+        "lowerBound": 360960
+      }
+    ],
+    [
+      "source_net_337",
+      {
+        "count": 1,
+        "lowerBound": 359936
+      }
+    ],
+    [
+      "source_net_271",
+      {
+        "count": 1,
+        "lowerBound": 358912
+      }
+    ],
+    [
+      "source_net_634",
+      {
+        "count": 1,
+        "lowerBound": 356352
+      }
+    ],
+    [
+      "source_net_289",
+      {
+        "count": 1,
+        "lowerBound": 354304
+      }
+    ]
+  ],
+  "fallbackStats": {
+    "widened": 80,
+    "fullFallbacks": 38,
+    "boundedRouteStarts": 1711
+  },
+  "failedOn": {
+    "routeId": 1710,
+    "name": "source_net_529_mst2",
+    "remaining": 893,
+    "globalRerip": 0
+  },
+  "qualification": {
+    "tag": "qualification",
+    "qualified": false,
+    "reason": "solver_failure",
+    "lastStage": "portPointPathingSolver",
+    "steps": 8321271,
+    "peakObservedRssMB": 7051
+  },
+  "timing": {
+    "tag": "end",
+    "elapsedSeconds": 520.6,
+    "stage": "portPointPathingSolver",
+    "progress": 0.44,
+    "steps": 8321271,
+    "stageIterations": null,
+    "solved": false,
+    "failed": true,
+    "error": "PreparedPortPointRoutingSolver ran out of iterations",
+    "rssMB": 7051,
+    "peakObservedRssMB": 7051,
+    "heapUsedMB": 3587
+  }
+}
