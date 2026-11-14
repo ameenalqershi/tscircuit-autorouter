@@ -32,7 +32,8 @@ const cfg = {
   windowIterations: Number(process.env.CORRIDOR_WINDOW_STEPS ?? 10000),
 }
 const solver = new AutoroutingPipelineSolver9_PreloadedTraceGraph(input, {
-  progressiveRouteCorridor: cfg,
+  progressiveRouteCorridor:
+    process.env.DISABLE_CORRIDOR === "1" ? undefined : cfg,
   progressiveRouteDiagnostics: process.env.SEARCH_DIAGNOSTICS === "1",
   cacheProvider: null,
   effort: Number(process.env.EFFORT || 1),
