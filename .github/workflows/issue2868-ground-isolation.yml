@@ -1,0 +1,71 @@
+name: Issue 2868 original full-geometry 730-pin ground net isolation
+
+on:
+  push:
+    branches: [evidence/2868-source-derived-proof]
+    paths:
+      - '.github/workflows/issue2868-ground-isolation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-board-ground-net:
+    name: Preserve all 3809 obstacles, route only original GND net
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    env:
+      WALL_BUDGET_SECONDS: '2700'
+      MAX_STEPS: '30000000'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: experiment/2868-combined-verification
+      - uses: actions/checkout@v4
+        with:
+          ref: evidence/2868-source-derived-proof
+          path: issue2868-repro-tools
+      - name: Copy forensic qualification script
+        run: |
+          mkdir -p scripts/repros
+          cp issue2868-repro-tools/scripts/repros/issue2868-qualify.ts scripts/repros/
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Verify original input and derive GND-only preserving all obstacles
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --connect-timeout 30 --max-time 150 -o /tmp/issue2868.zip \
+            https://github.com/user-attachments/files/33037296/scanner-full-board.simple-route.zip
+          unzip -jo /tmp/issue2868.zip scanner-full-board.simple-route.json -d /tmp
+          echo '471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca  /tmp/scanner-full-board.simple-route.json' | sha256sum -c -
+          node issue2868-repro-tools/scripts/repros/issue2868-isolate-ground.cjs \
+            /tmp/scanner-full-board.simple-route.json /tmp/ground-net-only.json
+          echo '70edb615c99d85baa914206e01c190da46bb0dc1686dd12b5d9cf046fee37cb9  /tmp/ground-net-only.json' | sha256sum -c -
+          echo "SRJ_FILE=/tmp/ground-net-only.json" >> "$GITHUB_ENV"
+          nproc
+          free -h
+      - name: Bounded original GND high-fanout routing and DRC
+        id: ground
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p issue2868-ground-evidence
+          echo "Combined commit $(git rev-parse HEAD)" > issue2868-ground-evidence/context.txt
+          timeout --signal=TERM --kill-after=15s 2800s bun scripts/repros/issue2868-qualify.ts 2>&1 | tee issue2868-ground-evidence/ground-only.jsonl
+          code=${PIPESTATUS[0]}
+          echo "exit=$code" >> issue2868-ground-evidence/context.txt
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue2868-ground-730-endpoint-evidence
+          path: issue2868-ground-evidence/
+          retention-days: 30
+      - name: Fail if GND-only is not qualified
+        if: steps.ground.outcome == 'failure'
+        run: exit 1
