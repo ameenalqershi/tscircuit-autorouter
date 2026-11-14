@@ -545,7 +545,8 @@ export class AutoroutingPipelineSolver9_PreloadedTraceGraph extends BaseSolver {
             graph,
             connections,
             layerCount: cms.srj.layerCount,
-            effort: Math.min(1, cms.effort),
+            // Experiment: allow budget scaling beyond the default effort.
+            effort: cms.effort,
             preserveTerminalPcbPortIds: true,
             captureSearchDebug: cms.opts.captureSearchDebug ?? false,
             minViaPadDiameter: cms.viaDiameter,
