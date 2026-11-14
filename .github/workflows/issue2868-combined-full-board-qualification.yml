@@ -1,0 +1,81 @@
+name: Issue 2868 combined-patches full-board qualification
+
+on:
+  push:
+    branches: [evidence/2868-source-derived-proof]
+    paths:
+      - '.github/workflows/issue2868-combined-full-board-qualification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-with-both-performance-patches:
+    name: Combined PR 3774 + PR 3775 on original board
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    env:
+      WALL_BUDGET_SECONDS: '6300'
+      MAX_STEPS: '30000000'
+    steps:
+      - name: Checkout both-patch combined candidate
+        uses: actions/checkout@v4
+        with:
+          ref: experiment/2868-combined-verification
+      - name: Checkout independent evidence harness
+        uses: actions/checkout@v4
+        with:
+          ref: evidence/2868-source-derived-proof
+          path: issue2868-repro-tools
+      - name: Install reproducible qualification harness
+        run: |
+          mkdir -p scripts/repros
+          cp issue2868-repro-tools/scripts/repros/issue2868-qualify.ts scripts/repros/issue2868-qualify.ts
+          printf 'Combined code commit: '; git rev-parse HEAD
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - name: Install locked dependencies
+        run: bun install --frozen-lockfile
+      - name: Fetch public original board and verify checksum
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --connect-timeout 30 --max-time 150 \
+            -o /tmp/issue2868.zip \
+            https://github.com/user-attachments/files/33037296/scanner-full-board.simple-route.zip
+          unzip -jo /tmp/issue2868.zip scanner-full-board.simple-route.json -d /tmp
+          echo '471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca  /tmp/scanner-full-board.simple-route.json' | sha256sum -c -
+          echo "SRJ_FILE=/tmp/scanner-full-board.simple-route.json" >> "$GITHUB_ENV"
+          nproc
+          free -h
+      - name: Bounded combined-patches original board attempt
+        id: original
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p issue2868-evidence
+          echo "Started $(date -u --iso-8601=seconds)" | tee issue2868-evidence/context.txt
+          git rev-parse HEAD | tee -a issue2868-evidence/context.txt
+          echo "Fixture checksum: $(sha256sum "$SRJ_FILE")" >> issue2868-evidence/context.txt
+          timeout --signal=TERM --kill-after=15s 6450s bun scripts/repros/issue2868-qualify.ts 2>&1 | tee issue2868-evidence/full-board.jsonl
+          rc=${PIPESTATUS[0]}
+          echo "Exit status: $rc" | tee -a issue2868-evidence/context.txt
+          echo "Finished $(date -u --iso-8601=seconds)" >> issue2868-evidence/context.txt
+          exit "$rc"
+      - name: Upload bounded-run logs even when incomplete
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: issue2868-combined-full-board-qualification
+          path: issue2868-evidence/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Mark unsuccessful full-board qualification
+        if: steps.original.outcome == 'failure'
+        run: |
+          echo 'Combined full-board qualification did not pass. Preserve original log and analyze next stage.'
+          exit 1
