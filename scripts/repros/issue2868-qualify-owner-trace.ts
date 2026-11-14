@@ -94,7 +94,7 @@ while (
     ) {
       const result = probeRoute(
         graph,
-        rid === lastProbeRouteId ? "during-route" : "route-start",
+        rid === lastProbeRouteId ? "during-route" : "first-observed",
       )
       if (result) console.log(JSON.stringify(result))
       lastProbeRouteId = rid
