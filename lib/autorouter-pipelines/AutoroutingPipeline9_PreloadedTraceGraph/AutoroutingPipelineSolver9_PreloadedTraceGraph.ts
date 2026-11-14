@@ -118,6 +118,7 @@ interface CapacityMeshSolverOptions {
   /** Retain low-level high-density search history for visualization. */
   captureSearchDebug?: boolean
   /** Experimental opt-in only; leaves all existing routing unchanged by default. */
+  progressiveRouteDiagnostics?: boolean
   progressiveRouteCorridor?: {
     initialMarginMm: number
     growthFactor?: number
@@ -562,6 +563,8 @@ export class AutoroutingPipelineSolver9_PreloadedTraceGraph extends BaseSolver {
               USE_SELECTIVE_RERIP_ROUTING: true,
               USE_PREPARED_PORT_POINT_ROUTING: true,
               PROGRESSIVE_ROUTE_CORRIDOR: cms.opts.progressiveRouteCorridor,
+              PROGRESSIVE_ROUTE_DIAGNOSTICS:
+                cms.opts.progressiveRouteDiagnostics,
               USE_PARTIAL_RIP_ROUTING_WITH_PRELOADED_TRACES: true,
             },
             weights: {

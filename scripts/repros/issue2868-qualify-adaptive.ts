@@ -33,6 +33,7 @@ const cfg = {
 }
 const solver = new AutoroutingPipelineSolver9_PreloadedTraceGraph(input, {
   progressiveRouteCorridor: cfg,
+  progressiveRouteDiagnostics: process.env.SEARCH_DIAGNOSTICS === "1",
   cacheProvider: null,
   effort: Number(process.env.EFFORT || 1),
 })
@@ -131,6 +132,29 @@ const final = status("end")
 const graphFinal = (
   solver.portPointPathingSolver as any
 )?.tinyPipelineSolver?.getSolver?.("solveGraph")
+if (process.env.SEARCH_DIAGNOSTICS === "1") {
+  const snapshot = graphFinal?.routeSearchDiagnostics?.snapshot(
+    graphFinal.iterations,
+  )
+  const names = graphFinal?.problem?.routeMetadata
+  if (snapshot)
+    console.log(
+      JSON.stringify({
+        tag: "route-search-diagnostics-final",
+        ...snapshot,
+        topRoutes: snapshot.topRoutes.map((route: any) => ({
+          ...route,
+          routeName: names?.[route.routeId]?.connectionId ?? null,
+        })),
+        active: snapshot.active
+          ? {
+              ...snapshot.active,
+              routeName: names?.[snapshot.active.routeId]?.connectionId ?? null,
+            }
+          : null,
+      }),
+    )
+}
 console.log(
   JSON.stringify({
     tag: "corridor-final",
