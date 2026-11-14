@@ -29,3 +29,9 @@ SRJ_FILE=.tmp-issue2868-reduced/diffpair-4-5.json WALL_BUDGET_SECONDS=120 bun sc
 ```
 
 In the combined-code local proof, the differential pair was fully routed (`solved=true`, 2/2 connection names, zero relaxed/default DRC errors, zero disconnected ports, zero missing source traces) in 1.4 seconds at ~328 MB RSS. This is **one** of the original 19 differential pairs, not coverage of all 19.
+
+### Bounded 77-connection full-solve comparison (important limitation)
+
+The original unmodified `main` and the combined PR #3774+#3775 versions both completed the 50×50 mm crop with **77/77 represented connection names**, **107 PCB trace objects**, `solved=true`, and no disconnected PCB ports or missing source traces. They each required **2,225,912 solver steps**, including a `portPointPathingSolver` stage that reached **2,000,002 iterations**. Both generated **exactly the same serialized output SHA-256** `5d71391b3185a3ed8243dff4c6dcdbc57aedf0f52b8a9b41cbbaabfb8db035d0`, and the *same 13 DRC error signatures*. This is strong evidence that neither performance patch introduced those geometry/DRC problems, **not** evidence that the DRC violations are acceptable or that the entire 684-connection board is fixed.
+
+Observed timings are noisy single measurements: baseline 168.0 sec / 2,282 MB RSS, combined 168.9 sec / 2,580 MB RSS, so **do not claim an end-to-end speedup for this 77-connection subset**. The indexed lookup was measurably faster in the separate full-original-attachment necessary-cramped-stage microbenchmark, but that did not translate into a provable total-run improvement here.
