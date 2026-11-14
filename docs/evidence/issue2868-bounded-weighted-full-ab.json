@@ -1,0 +1,57 @@
+{
+  "status": "FAILED_ON_ORIGINAL_BOARD",
+  "baseline": {
+    "sha": "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca",
+    "inputs": 684,
+    "solved": false,
+    "failed": true,
+    "graphIterations": 8000000,
+    "lastRoute": 1710,
+    "remaining": 893,
+    "corridor": {
+      "widened": 80,
+      "fullFallbacks": 38,
+      "boundedRouteStarts": 1711
+    },
+    "queuePops": 7982887,
+    "neighborScans": 187946546,
+    "lowerBoundRejected": 72661170,
+    "elapsed": 551.3,
+    "qualification": false,
+    "finalDRCExecuted": false
+  },
+  "weighted": {
+    "sha": "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca",
+    "inputs": 684,
+    "solved": false,
+    "failed": true,
+    "graphIterations": 8000000,
+    "lastRoute": 1705,
+    "remaining": 899,
+    "corridor": {
+      "widened": 79,
+      "fullFallbacks": 38,
+      "boundedRouteStarts": 1707
+    },
+    "weighted": {
+      "attempted": 38,
+      "solved": 19,
+      "returnedToExact": 19
+    },
+    "queuePops": 7982890,
+    "neighborScans": 188979076,
+    "lowerBoundRejected": 73523094,
+    "elapsed": 550.9,
+    "qualification": false,
+    "finalDRCExecuted": false
+  },
+  "delta": {
+    "lastRoute": -5,
+    "remaining": 6,
+    "queuePops": 3,
+    "neighborScans": 1032530,
+    "lowerBoundRejected": 861924,
+    "elapsedSeconds": -0.39999999999997726
+  },
+  "note": "No DRC qualification; graph paths cannot be equated with electrical copper source connections."
+}
