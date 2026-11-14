@@ -35,6 +35,7 @@ const solver = new AutoroutingPipelineSolver9_PreloadedTraceGraph(input, {
   progressiveRouteCorridor:
     process.env.DISABLE_CORRIDOR === "1" ? undefined : cfg,
   progressiveRouteDiagnostics: process.env.SEARCH_DIAGNOSTICS === "1",
+  progressiveRoutePreflight: process.env.REGION_PREFLIGHT === "1",
   cacheProvider: null,
   effort: Number(process.env.EFFORT || 1),
 })
@@ -122,6 +123,7 @@ while (
           geometrySupported: graph.geometry?.supported,
           partialRipPlanCount: graph.partialRipRoutePlans?.size,
           stats: graph.corridorStats ?? null,
+          preflight: graph.preflightStats ?? null,
         }),
       )
     status("progress")
@@ -162,6 +164,7 @@ console.log(
     solver: graphFinal?.constructor?.name,
     iteration: graphFinal?.iterations,
     stats: graphFinal?.corridorStats ?? null,
+    preflight: graphFinal?.preflightStats ?? null,
     route: graphFinal?.state?.currentRouteId ?? null,
   }),
 )

@@ -105,6 +105,7 @@ export interface HgPortPointPathingSolverParams {
     /** Preserve native routing with dense cost tables and SolverRuntime geometry preparation. */
     USE_PREPARED_PORT_POINT_ROUTING?: boolean
     PROGRESSIVE_ROUTE_DIAGNOSTICS?: boolean
+    PROGRESSIVE_ROUTE_PREFLIGHT?: boolean
     PROGRESSIVE_ROUTE_CORRIDOR?: {
       initialMarginMm: number
       growthFactor?: number
