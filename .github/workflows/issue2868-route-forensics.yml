@@ -5,6 +5,7 @@ on:
     branches: [evidence/2868-source-derived-proof]
     paths:
       - '.github/workflows/issue2868-route-forensics.yml'
+      - 'scripts/repros/issue2868-qualify.ts'
   workflow_dispatch:
 
 permissions:
