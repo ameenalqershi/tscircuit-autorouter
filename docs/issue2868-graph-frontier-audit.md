@@ -37,3 +37,11 @@ The harness includes original full-board qualification logic; if routing finishe
 - If `geometry=true`, `fixedNet=true`, `occupied=false`, committed assignments are a necessary blocker under current routing. If `occupied=true` but routing still fails, geometric segment crossings or search-order/cost combinatorics remain possible.
 - Do not infer physical shorts from SRJ copper-pour rectangles; qualify against **final** copper with cutouts, annular clearances, trace connectivity and DRC.
 - Preserve other contributors' branches and PRs. No merge to `main` or update of PR #3784 without the maintainer's standard regression gate.
+
+For a concise post-run comparison (including the live route's candidate queue and nearby committed route owners):
+
+```sh
+bun scripts/repros/issue2868-summarize-frontier.ts /absolute/path/full.jsonl
+```
+
+This classifier is intentionally conservative. It reports `bounded-reachability-inconclusive` if the per-probe incidence limit is reached. The source-derived `geometry` and `fixedNet` results must never be interpreted as a completed physical path; they omit intra-region trace crossings.
