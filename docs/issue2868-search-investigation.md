@@ -22,6 +22,7 @@ Date: November 14, 2026. All values below were captured from public GitHub Actio
 | GND plus supply `source_net_0` only; all obstacles retained | 907 source endpoints, `solved=true`, 8,540,411 total global steps | **919 errors** | [differential 2-net run](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43582696818) |
 | All source connections *except* supply `source_net_0` | **Failed** again after 8M internal prepared-router iterations; different route `source_net_3_mst5` | Not qualified | [differential no-supply run](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43582696818) |
 | All 684, experimental distance cost `0.2` (baseline `0.05`) | Still failed at 8,320,126 steps; failed route changed to `source_net_144_mst532` | Not qualified | [distance-cost run](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43582967327) |
+| All 684, **non-prepared** solver replacing Prepared | Still failed at same route `source_net_144_mst491`, same 8,320,126 steps | Not qualified | [non-prepared A/B run](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43583427284) |
 
 ## Actual failure mode
 
@@ -44,7 +45,7 @@ This establishes a **path-search budget exhaustion while one route remained acti
 
 - Simply doubling effort: 16.32M global steps and the same failure, no full-board progress.
 - Changing `DISTANCE_TO_COST` from `0.05` to `0.2`: on a real cropped **77-source-connection six-layer** input, DRC worsened from **13 to 175** while total steps increased from 2,225,912 to 2,397,447. Although wall-clock seconds fell from 168 to 150.4 on that sample, this is **not a permissible quality regression**. Experimental fork only.
-- Switching from prepared to non-prepared selective-rerip search: on 77 sources, **identical output SHA-256, 13 identical DRC violations and 2,225,912 identical steps**. Original-full-board differential run: [ongoing/see result](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43583427284); do not assume this changes the full-board outcome.
+- Switching from prepared to non-prepared selective-rerip search: on 77 sources, **identical output SHA-256, 13 identical DRC violations and 2,225,912 identical steps**. Original-full-board [A/B run](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43583427284) also **failed at the same GND route `source_net_144_mst491` after exactly 8,320,126 steps**, with zero recorded global selective rerips. Therefore the Prepared acceleration implementation alone is not the underlying cause.
 
 ## Engineering next step: plane-aware routing, not a blind shortcut
 
