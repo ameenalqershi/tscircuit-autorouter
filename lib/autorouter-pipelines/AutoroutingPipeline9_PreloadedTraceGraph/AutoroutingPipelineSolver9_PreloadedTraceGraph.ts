@@ -119,6 +119,8 @@ interface CapacityMeshSolverOptions {
   captureSearchDebug?: boolean
   /** Experimental opt-in only; leaves all existing routing unchanged by default. */
   progressiveRouteDiagnostics?: boolean
+  /** Bounded weighted-A* first attempt, then exact fallback; experimental and opt-in. */
+  progressiveWeightedFallback?: { factor: number; iterationLimit: number }
   progressiveRouteCorridor?: {
     initialMarginMm: number
     growthFactor?: number
@@ -565,6 +567,8 @@ export class AutoroutingPipelineSolver9_PreloadedTraceGraph extends BaseSolver {
               PROGRESSIVE_ROUTE_CORRIDOR: cms.opts.progressiveRouteCorridor,
               PROGRESSIVE_ROUTE_DIAGNOSTICS:
                 cms.opts.progressiveRouteDiagnostics,
+              PROGRESSIVE_WEIGHTED_FALLBACK:
+                cms.opts.progressiveWeightedFallback,
               USE_PARTIAL_RIP_ROUTING_WITH_PRELOADED_TRACES: true,
             },
             weights: {

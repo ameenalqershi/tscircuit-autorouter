@@ -35,6 +35,15 @@ const solver = new AutoroutingPipelineSolver9_PreloadedTraceGraph(input, {
   progressiveRouteCorridor:
     process.env.DISABLE_CORRIDOR === "1" ? undefined : cfg,
   progressiveRouteDiagnostics: process.env.SEARCH_DIAGNOSTICS === "1",
+  progressiveWeightedFallback:
+    process.env.WEIGHTED_FALLBACK_FACTOR === undefined
+      ? undefined
+      : {
+          factor: Number(process.env.WEIGHTED_FALLBACK_FACTOR),
+          iterationLimit: Number(
+            process.env.WEIGHTED_FALLBACK_ITERATIONS ?? "32000",
+          ),
+        },
   cacheProvider: null,
   effort: Number(process.env.EFFORT || 1),
 })
@@ -122,6 +131,7 @@ while (
           geometrySupported: graph.geometry?.supported,
           partialRipPlanCount: graph.partialRipRoutePlans?.size,
           stats: graph.corridorStats ?? null,
+          weightedFallback: graph.weightedFallbackStats ?? null,
         }),
       )
     status("progress")
@@ -162,6 +172,7 @@ console.log(
     solver: graphFinal?.constructor?.name,
     iteration: graphFinal?.iterations,
     stats: graphFinal?.corridorStats ?? null,
+    weightedFallback: graphFinal?.weightedFallbackStats ?? null,
     route: graphFinal?.state?.currentRouteId ?? null,
   }),
 )
