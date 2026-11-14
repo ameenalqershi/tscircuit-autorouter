@@ -1,0 +1,55 @@
+name: Issue 2868 precise failing route diagnostic
+
+on:
+  push:
+    branches: [evidence/2868-source-derived-proof]
+    paths:
+      - '.github/workflows/issue2868-route-forensics.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  capture-failing-route:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    env:
+      WALL_BUDGET_SECONDS: '1700'
+      MAX_STEPS: '30000000'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Download actual original PCB input with SHA-256 verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --connect-timeout 30 --max-time 150 -o /tmp/issue2868.zip \
+            https://github.com/user-attachments/files/33037296/scanner-full-board.simple-route.zip
+          unzip -jo /tmp/issue2868.zip scanner-full-board.simple-route.json -d /tmp
+          echo '471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca  /tmp/scanner-full-board.simple-route.json' | sha256sum -c -
+          echo "SRJ_FILE=/tmp/scanner-full-board.simple-route.json" >> "$GITHUB_ENV"
+      - name: Reproduce failure and capture precise route diagnostics
+        id: original
+        shell: bash
+        continue-on-error: true
+        run: |
+          set -uo pipefail
+          mkdir -p issue2868-forensics
+          echo "Commit $(git rev-parse HEAD)" > issue2868-forensics/context.txt
+          timeout --signal=TERM --kill-after=10s 1770s bun scripts/repros/issue2868-qualify.ts 2>&1 | tee issue2868-forensics/full-board.jsonl
+          code=${PIPESTATUS[0]}
+          echo "Exit code $code" >> issue2868-forensics/context.txt
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue2868-precise-route-forensics
+          path: issue2868-forensics/
+          retention-days: 30
+      - name: Fail if not electrically qualified
+        if: steps.original.outcome == 'failure'
+        run: exit 1
