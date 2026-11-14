@@ -46,6 +46,8 @@ export function analyzeReachability(
     const region = queue[head++]!
     for (const port of t.regionIncidentPorts[region] ?? []) {
       if (++visitedPorts > stopAfter) break
+      // The native router cannot exit a region by returning through the same start endpoint.
+      if (port === start && port !== goal) continue
       if (port === goal) {
         const goalReservation = reserved?.[port]
         const goalAssignment = st.portAssignment[port]

@@ -66,3 +66,14 @@ test("foreign fixed-region net blocks geometric corridor without dynamic occupan
   expect(analyzeReachability(g, true, false).found).toBe(false)
   expect(analyzeReachability(g, true, true).found).toBe(true)
 })
+
+test("do not invent a path through the start terminal to another initial region", () => {
+  const g = miniGraph()
+  g.topology.incidentPortRegion = [[0, 1], [1], [0]]
+  g.topology.regionIncidentPorts = [
+    [0, 2],
+    [0, 1],
+  ]
+  const solver = { ...g, getStartingNextRegionId: () => 1 }
+  expect(analyzeReachability(solver, true, true).found).toBe(false)
+})
