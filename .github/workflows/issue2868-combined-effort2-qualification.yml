@@ -1,4 +1,4 @@
-name: Issue 2868 combined patches - higher routing effort diagnostic
+name: Issue 2868 uncapped routing effort 2 experiment
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
       - name: Checkout combined candidate
         uses: actions/checkout@v4
         with:
-          ref: experiment/2868-combined-verification
+          ref: experiment/2868-uncapped-tiny-effort
       - name: Checkout original-input qualification harness
         uses: actions/checkout@v4
         with:
@@ -63,7 +63,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: issue2868-combined-effort2-evidence
+          name: issue2868-uncapped-effort2-evidence
           path: issue2868-effort2/
           retention-days: 30
       - name: Mark non-qualifying run as failure
