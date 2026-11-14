@@ -44,7 +44,7 @@ This establishes a **path-search budget exhaustion while one route remained acti
 
 - Simply doubling effort: 16.32M global steps and the same failure, no full-board progress.
 - Changing `DISTANCE_TO_COST` from `0.05` to `0.2`: on a real cropped **77-source-connection six-layer** input, DRC worsened from **13 to 175** while total steps increased from 2,225,912 to 2,397,447. Although wall-clock seconds fell from 168 to 150.4 on that sample, this is **not a permissible quality regression**. Experimental fork only.
-- Switching from prepared to non-prepared selective-rerip search: on 77 sources, **identical output SHA-256, 13 identical DRC violations and 2,225,912 identical steps**. Original-full-board differential run: [ongoing/see result](https://github.com/ameenalqershi/tscircuit-autorouter/actions); do not assume this changes the full-board outcome.
+- Switching from prepared to non-prepared selective-rerip search: on 77 sources, **identical output SHA-256, 13 identical DRC violations and 2,225,912 identical steps**. Original-full-board differential run: [ongoing/see result](https://github.com/ameenalqershi/tscircuit-autorouter/actions/runs/43583427284); do not assume this changes the full-board outcome.
 
 ## Engineering next step: plane-aware routing, not a blind shortcut
 
