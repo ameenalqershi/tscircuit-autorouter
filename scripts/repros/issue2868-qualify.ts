@@ -89,6 +89,21 @@ if (solver.failed) {
         ? graphSolver?.problem?.routeMetadata?.[currentRouteId]
         : undefined
     const neverRouted = graphSolver?.getNeverSuccessfullyRoutedRoutes?.()
+    const rerip = graphSolver?.getSelectiveReripStats?.()
+    const selectiveRerip = rerip
+      ? {
+          lastFailedRouteId: rerip.lastFailedRouteId ?? null,
+          globalReripCount: rerip.globalReripCount ?? null,
+          globalReripReason: rerip.globalReripReason ?? null,
+          lastDirectOwnerRouteIds:
+            rerip.lastDirectOwnerRouteIds?.slice(0, 16) ?? [],
+          lastRepeatedOwnerRouteIds:
+            rerip.lastRepeatedOwnerRouteIds?.slice(0, 16) ?? [],
+          lastAlternateOwnerRouteIds:
+            rerip.lastAlternateOwnerRouteIds?.slice(0, 16) ?? [],
+          lastRippedRouteIds: rerip.lastRippedRouteIds?.slice(0, 16) ?? [],
+        }
+      : null
     console.log(
       JSON.stringify({
         tag: "prepared-route-debug",
@@ -106,6 +121,10 @@ if (solver.failed) {
         startPoint:
           metadata?.simpleRouteConnection?.pointsToConnect?.[0] ?? null,
         endPoint: metadata?.simpleRouteConnection?.pointsToConnect?.[1] ?? null,
+        selectiveRerip,
+        graphRouteCount: graphSolver?.problem?.routeCount ?? null,
+        remainingQueuedRoutes:
+          graphSolver?.state?.unroutedRoutes?.length ?? null,
         neverRoutedCount: Array.isArray(neverRouted)
           ? neverRouted.length
           : null,
