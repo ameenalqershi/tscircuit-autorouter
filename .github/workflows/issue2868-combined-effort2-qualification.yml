@@ -1,0 +1,71 @@
+name: Issue 2868 combined patches - higher routing effort diagnostic
+
+on:
+  push:
+    branches: [evidence/2868-source-derived-proof]
+    paths:
+      - '.github/workflows/issue2868-combined-effort2-qualification.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-board-with-effort2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 95
+    env:
+      WALL_BUDGET_SECONDS: '5450'
+      MAX_STEPS: '50000000'
+      EFFORT: '2'
+    steps:
+      - name: Checkout combined candidate
+        uses: actions/checkout@v4
+        with:
+          ref: experiment/2868-combined-verification
+      - name: Checkout original-input qualification harness
+        uses: actions/checkout@v4
+        with:
+          ref: evidence/2868-source-derived-proof
+          path: issue2868-repro-tools
+      - name: Install evidence runner
+        run: |
+          mkdir -p scripts/repros
+          cp issue2868-repro-tools/scripts/repros/issue2868-qualify.ts scripts/repros/
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: '1.4.4'
+      - run: bun install --frozen-lockfile
+      - name: Download and hash-check public original fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -fsSL --retry 3 --connect-timeout 30 --max-time 150 -o /tmp/issue2868.zip \
+            https://github.com/user-attachments/files/33037296/scanner-full-board.simple-route.zip
+          unzip -jo /tmp/issue2868.zip scanner-full-board.simple-route.json -d /tmp
+          echo '471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca  /tmp/scanner-full-board.simple-route.json' | sha256sum -c -
+          echo "SRJ_FILE=/tmp/scanner-full-board.simple-route.json" >> "$GITHUB_ENV"
+          free -h
+      - name: Run effort 2 on full 684-connection board
+        id: qualification
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p issue2868-effort2
+          printf 'commit=' | tee issue2868-effort2/context.txt
+          git rev-parse HEAD | tee -a issue2868-effort2/context.txt
+          echo "EFFORT=$EFFORT" >> issue2868-effort2/context.txt
+          timeout --signal=TERM --kill-after=15s 5550s bun scripts/repros/issue2868-qualify.ts 2>&1 | tee issue2868-effort2/full-board.jsonl
+          code=${PIPESTATUS[0]}
+          echo "exit=$code" >> issue2868-effort2/context.txt
+          exit "$code"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: issue2868-combined-effort2-evidence
+          path: issue2868-effort2/
+          retention-days: 30
+      - name: Mark non-qualifying run as failure
+        if: steps.qualification.outcome == 'failure'
+        run: exit 1
