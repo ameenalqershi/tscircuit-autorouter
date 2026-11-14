@@ -104,6 +104,12 @@ export interface HgPortPointPathingSolverParams {
     USE_SELECTIVE_RERIP_ROUTING?: boolean
     /** Preserve native routing with dense cost tables and SolverRuntime geometry preparation. */
     USE_PREPARED_PORT_POINT_ROUTING?: boolean
+    PROGRESSIVE_ROUTE_CORRIDOR?: {
+      initialMarginMm: number
+      growthFactor?: number
+      maxExpansions?: number
+      windowIterations?: number
+    }
     /** Count preloaded assignments when applying partial-rip scale bounds. */
     USE_PARTIAL_RIP_ROUTING_WITH_PRELOADED_TRACES?: boolean
   }

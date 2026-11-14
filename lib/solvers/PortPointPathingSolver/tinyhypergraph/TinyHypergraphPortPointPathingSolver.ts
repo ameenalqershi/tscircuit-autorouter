@@ -1185,6 +1185,16 @@ export class TinyHypergraphPortPointPathingSolver extends BaseSolver {
       !hasPreloadedTraceOccupancy || usePartialRipRoutingWithPreloadedTraces,
       partialRipEligibilityCount,
     )
+    if (params.flags.PROGRESSIVE_ROUTE_CORRIDOR) {
+      const config = params.flags.PROGRESSIVE_ROUTE_CORRIDOR
+      tinyPipelineInput.solveGraphOptions = {
+        ...tinyPipelineInput.solveGraphOptions,
+        LOCAL_ROUTE_CORRIDOR_INITIAL_MARGIN: config.initialMarginMm,
+        LOCAL_ROUTE_CORRIDOR_GROWTH_FACTOR: config.growthFactor,
+        LOCAL_ROUTE_CORRIDOR_MAX_EXPANSIONS: config.maxExpansions,
+        LOCAL_ROUTE_CORRIDOR_WINDOW_ITERATIONS: config.windowIterations,
+      }
+    }
     this.tinyPipelineSolver =
       new TinyHyperGraphSectionPipelineWithTerminalNetIds(
         tinyPipelineInput,

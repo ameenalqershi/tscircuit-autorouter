@@ -117,6 +117,13 @@ interface CapacityMeshSolverOptions {
   visualizationTraceColorMode?: TraceColorMode
   /** Retain low-level high-density search history for visualization. */
   captureSearchDebug?: boolean
+  /** Experimental opt-in only; leaves all existing routing unchanged by default. */
+  progressiveRouteCorridor?: {
+    initialMarginMm: number
+    growthFactor?: number
+    maxExpansions?: number
+    windowIterations?: number
+  }
   powerTraceExpansion?: PowerTraceExpanderOptions
 }
 export type AutoroutingPipelineSolverOptions = CapacityMeshSolverOptions
@@ -554,6 +561,7 @@ export class AutoroutingPipelineSolver9_PreloadedTraceGraph extends BaseSolver {
               RIPPING_ENABLED: true,
               USE_SELECTIVE_RERIP_ROUTING: true,
               USE_PREPARED_PORT_POINT_ROUTING: true,
+              PROGRESSIVE_ROUTE_CORRIDOR: cms.opts.progressiveRouteCorridor,
               USE_PARTIAL_RIP_ROUTING_WITH_PRELOADED_TRACES: true,
             },
             weights: {
