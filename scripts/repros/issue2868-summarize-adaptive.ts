@@ -23,6 +23,18 @@ const final = last("end")
 const qualification = last("qualification")
 const adaptive = last("corridor-final") ?? last("corridor-runtime")
 const fail = last("prepared-route-debug")
+const sampled = last("route-observation-summary")
+const routeNameById = new Map<number, string>(
+  rows
+    .filter(
+      (event) =>
+        event.tag === "route-observation" && typeof event.routeId === "number",
+    )
+    .map((event) => [
+      event.routeId as number,
+      String(event.routeName ?? "unknown"),
+    ]),
+)
 const done = Boolean(final && qualification)
 const qualified =
   done &&
@@ -69,6 +81,24 @@ console.log(
             currentRoute: fail.currentConnectionName,
             remainingQueued: fail.remainingQueuedRoutes,
             graphIterationCap: fail.maxIterations,
+          }
+        : null,
+      routeSampling: sampled
+        ? {
+            observationCount: sampled.observationCount,
+            sampledRouteCount: sampled.sampledRouteCount,
+            // These are lower bounds from a 512-Pipeline-step sampler, NOT exact route costs.
+            topObservedLowerBounds: sampled.topObservedSpans
+              ?.slice(0, 20)
+              .map(
+                (span: {
+                  routeId: number
+                  observedSpanLowerBound: number
+                }) => ({
+                  ...span,
+                  routeName: routeNameById.get(span.routeId) ?? null,
+                }),
+              ),
           }
         : null,
       drc:
