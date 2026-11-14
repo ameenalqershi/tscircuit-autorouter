@@ -19,3 +19,13 @@ Recorded on six-core Linux/Bun 1.4.4 with the combined PR #3774+#3775 code: regi
 The harness reports 100% completion only if the solver finishes, every original connection name is represented and both relaxed/default DRC and port/source-trace connectivity checks pass. Its checks are still not a substitute for review against the original complete 684-connection design and fabrication rules.
 
 Use this branch for diagnostic evidence only; it is **not another PR** and does not close #2868.
+
+### Original six-layer differential pair check
+
+The reducer also emits `diffpair-4-5.json`, containing both original `source_trace_4` and `source_trace_5`, the original differential-pair length-tolerance rule, and 56 intersecting obstacles. Run:
+
+```bash
+SRJ_FILE=.tmp-issue2868-reduced/diffpair-4-5.json WALL_BUDGET_SECONDS=120 bun scripts/repros/issue2868-qualify.ts
+```
+
+In the combined-code local proof, the differential pair was fully routed (`solved=true`, 2/2 connection names, zero relaxed/default DRC errors, zero disconnected ports, zero missing source traces) in 1.4 seconds at ~328 MB RSS. This is **one** of the original 19 differential pairs, not coverage of all 19.

@@ -29,3 +29,21 @@ for(const {name,size} of specs){
   fs.writeFileSync(outputFile,JSON.stringify(out))
   console.log(JSON.stringify({name,size,obstacles:obstacles.length,connections:connections.length,sha256:createHash("sha256").update(fs.readFileSync(outputFile)).digest("hex"),outputFile}))
 }
+
+// Isolate one real high-speed differential pair from the same original board.
+const differentialPair = original.differentialPairs.find(p => p.connectionNames.includes("source_trace_4"))
+if (!differentialPair) throw new Error("The original issue input is missing expected differential pair 4/5")
+const pairNames = new Set(differentialPair.connectionNames)
+const pairConnections = original.connections.filter(c => pairNames.has(c.name))
+const pairPoints = pairConnections.flatMap(c => c.pointsToConnect)
+const pairBounds = {
+  minX: Math.min(...pairPoints.map(p=>p.x)) - 4,
+  maxX: Math.max(...pairPoints.map(p=>p.x)) + 4,
+  minY: Math.min(...pairPoints.map(p=>p.y)) - 4,
+  maxY: Math.max(...pairPoints.map(p=>p.y)) + 4,
+}
+const pairObstacles = original.obstacles.filter(o => o.center.x+o.width/2>=pairBounds.minX && o.center.x-o.width/2<=pairBounds.maxX && o.center.y+o.height/2>=pairBounds.minY && o.center.y-o.height/2<=pairBounds.maxY)
+const pairData = { ...original, bounds:pairBounds, obstacles:pairObstacles, connections:pairConnections, differentialPairs:[differentialPair] }
+const pairFile = path.join(outputDir, "diffpair-4-5.json")
+fs.writeFileSync(pairFile,JSON.stringify(pairData))
+console.log(JSON.stringify({name:"diffpair-4-5",obstacles:pairObstacles.length,connections:pairConnections.length,differentialPairs:1,sha256:createHash("sha256").update(fs.readFileSync(pairFile)).digest("hex"),outputFile:pairFile}))
