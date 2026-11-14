@@ -1,0 +1,2952 @@
+{
+  "inputSha256": "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca",
+  "connections": 684,
+  "status": "failed",
+  "qualified": false,
+  "graphIterations": 8000000,
+  "completedRouteCount": 1710,
+  "totalReasonCounts": {
+    "queuePop": 7982887,
+    "neighborScanned": 187946546,
+    "candidateQueued": 34842690,
+    "lowerBoundRejected": 72661170,
+    "closedHop": 7267852,
+    "differentNetRegionReservation": 17774292,
+    "scoreRejected": 26452529,
+    "bestCostRejected": 13333389,
+    "neighborOutOfCorridor": 3705356,
+    "goalSeen": 1710,
+    "pathFound": 1710,
+    "differentNetPortAssignment": 6177071
+  },
+  "reasonsSorted": [
+    {
+      "reason": "neighborScanned",
+      "count": 187946546
+    },
+    {
+      "reason": "lowerBoundRejected",
+      "count": 72661170
+    },
+    {
+      "reason": "candidateQueued",
+      "count": 34842690
+    },
+    {
+      "reason": "scoreRejected",
+      "count": 26452529
+    },
+    {
+      "reason": "differentNetRegionReservation",
+      "count": 17774292
+    },
+    {
+      "reason": "bestCostRejected",
+      "count": 13333389
+    },
+    {
+      "reason": "queuePop",
+      "count": 7982887
+    },
+    {
+      "reason": "closedHop",
+      "count": 7267852
+    },
+    {
+      "reason": "differentNetPortAssignment",
+      "count": 6177071
+    },
+    {
+      "reason": "neighborOutOfCorridor",
+      "count": 3705356
+    },
+    {
+      "reason": "goalSeen",
+      "count": 1710
+    },
+    {
+      "reason": "pathFound",
+      "count": 1710
+    }
+  ],
+  "byWindowKind": {
+    "local": {
+      "queuePop": 1391351,
+      "neighborScanned": 37584579,
+      "candidateQueued": 7098602,
+      "lowerBoundRejected": 11014039,
+      "closedHop": 1225484,
+      "differentNetRegionReservation": 2777651,
+      "scoreRejected": 6013086,
+      "bestCostRejected": 3562538,
+      "neighborOutOfCorridor": 3705356,
+      "goalSeen": 1672,
+      "pathFound": 1672,
+      "differentNetPortAssignment": 1246915
+    },
+    "unrestricted": {
+      "queuePop": 6591536,
+      "neighborScanned": 150361967,
+      "candidateQueued": 27744088,
+      "differentNetRegionReservation": 14996641,
+      "lowerBoundRejected": 61647131,
+      "scoreRejected": 20439443,
+      "differentNetPortAssignment": 4930156,
+      "bestCostRejected": 9770851,
+      "closedHop": 6042368,
+      "goalSeen": 38,
+      "pathFound": 38
+    }
+  },
+  "mostExpensiveRoutes": [
+    {
+      "routeId": 1508,
+      "name": "source_net_280_mst5",
+      "graphIterations": 377151,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 353151,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              187261
+            ],
+            [
+              "lowerBoundRejected",
+              57964
+            ],
+            [
+              "neighborOutOfCorridor",
+              34370
+            ],
+            [
+              "candidateQueued",
+              28979
+            ],
+            [
+              "scoreRejected",
+              22400
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              223093
+            ],
+            [
+              "lowerBoundRejected",
+              66504
+            ],
+            [
+              "scoreRejected",
+              42752
+            ],
+            [
+              "candidateQueued",
+              39205
+            ],
+            [
+              "differentNetRegionReservation",
+              19979
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              238456
+            ],
+            [
+              "lowerBoundRejected",
+              71992
+            ],
+            [
+              "scoreRejected",
+              55919
+            ],
+            [
+              "candidateQueued",
+              47549
+            ],
+            [
+              "differentNetRegionReservation",
+              21941
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 353151,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7850137
+            ],
+            [
+              "lowerBoundRejected",
+              3304740
+            ],
+            [
+              "candidateQueued",
+              1396450
+            ],
+            [
+              "scoreRejected",
+              1050043
+            ],
+            [
+              "differentNetRegionReservation",
+              801957
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1502,
+      "name": "source_net_300_mst5",
+      "graphIterations": 373467,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 349467,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              252093
+            ],
+            [
+              "lowerBoundRejected",
+              75177
+            ],
+            [
+              "scoreRejected",
+              41045
+            ],
+            [
+              "neighborOutOfCorridor",
+              37833
+            ],
+            [
+              "candidateQueued",
+              33821
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              249873
+            ],
+            [
+              "lowerBoundRejected",
+              85128
+            ],
+            [
+              "scoreRejected",
+              45060
+            ],
+            [
+              "candidateQueued",
+              41907
+            ],
+            [
+              "bestCostRejected",
+              24282
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              244474
+            ],
+            [
+              "lowerBoundRejected",
+              84347
+            ],
+            [
+              "scoreRejected",
+              47228
+            ],
+            [
+              "candidateQueued",
+              43869
+            ],
+            [
+              "bestCostRejected",
+              22835
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 349467,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7806928
+            ],
+            [
+              "lowerBoundRejected",
+              3243210
+            ],
+            [
+              "candidateQueued",
+              1394855
+            ],
+            [
+              "scoreRejected",
+              1045830
+            ],
+            [
+              "differentNetRegionReservation",
+              800124
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1484,
+      "name": "source_net_328_mst5",
+      "graphIterations": 368299,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 344299,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              267549
+            ],
+            [
+              "lowerBoundRejected",
+              88614
+            ],
+            [
+              "scoreRejected",
+              44892
+            ],
+            [
+              "candidateQueued",
+              39285
+            ],
+            [
+              "neighborOutOfCorridor",
+              33807
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              251420
+            ],
+            [
+              "lowerBoundRejected",
+              92968
+            ],
+            [
+              "candidateQueued",
+              46420
+            ],
+            [
+              "scoreRejected",
+              43738
+            ],
+            [
+              "bestCostRejected",
+              27180
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              251420
+            ],
+            [
+              "lowerBoundRejected",
+              93720
+            ],
+            [
+              "candidateQueued",
+              47824
+            ],
+            [
+              "scoreRejected",
+              44256
+            ],
+            [
+              "bestCostRejected",
+              27181
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 344299,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7745391
+            ],
+            [
+              "lowerBoundRejected",
+              3229842
+            ],
+            [
+              "candidateQueued",
+              1403526
+            ],
+            [
+              "scoreRejected",
+              1038029
+            ],
+            [
+              "differentNetRegionReservation",
+              790449
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1216,
+      "name": "source_net_558_mst13",
+      "graphIterations": 365990,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 341990,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              192994
+            ],
+            [
+              "lowerBoundRejected",
+              51566
+            ],
+            [
+              "neighborOutOfCorridor",
+              38134
+            ],
+            [
+              "candidateQueued",
+              33511
+            ],
+            [
+              "scoreRejected",
+              21625
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              191816
+            ],
+            [
+              "lowerBoundRejected",
+              67736
+            ],
+            [
+              "candidateQueued",
+              39096
+            ],
+            [
+              "scoreRejected",
+              24054
+            ],
+            [
+              "differentNetRegionReservation",
+              17467
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              191818
+            ],
+            [
+              "lowerBoundRejected",
+              71938
+            ],
+            [
+              "candidateQueued",
+              41267
+            ],
+            [
+              "scoreRejected",
+              24329
+            ],
+            [
+              "bestCostRejected",
+              18161
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 341990,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7727349
+            ],
+            [
+              "lowerBoundRejected",
+              3606079
+            ],
+            [
+              "candidateQueued",
+              1415939
+            ],
+            [
+              "scoreRejected",
+              875653
+            ],
+            [
+              "differentNetRegionReservation",
+              796059
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1538,
+      "name": "source_net_232_mst5",
+      "graphIterations": 364495,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 340495,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              267347
+            ],
+            [
+              "lowerBoundRejected",
+              81638
+            ],
+            [
+              "scoreRejected",
+              44885
+            ],
+            [
+              "candidateQueued",
+              35422
+            ],
+            [
+              "neighborOutOfCorridor",
+              34726
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              242317
+            ],
+            [
+              "lowerBoundRejected",
+              70314
+            ],
+            [
+              "scoreRejected",
+              52428
+            ],
+            [
+              "candidateQueued",
+              41284
+            ],
+            [
+              "bestCostRejected",
+              18328
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              246190
+            ],
+            [
+              "lowerBoundRejected",
+              77336
+            ],
+            [
+              "scoreRejected",
+              57297
+            ],
+            [
+              "candidateQueued",
+              43560
+            ],
+            [
+              "differentNetRegionReservation",
+              20708
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 340495,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7686270
+            ],
+            [
+              "lowerBoundRejected",
+              3139480
+            ],
+            [
+              "candidateQueued",
+              1383441
+            ],
+            [
+              "scoreRejected",
+              1058666
+            ],
+            [
+              "differentNetRegionReservation",
+              780082
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1356,
+      "name": "source_net_347_mst6",
+      "graphIterations": 363977,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 339977,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              206206
+            ],
+            [
+              "lowerBoundRejected",
+              61166
+            ],
+            [
+              "candidateQueued",
+              51285
+            ],
+            [
+              "bestCostRejected",
+              37357
+            ],
+            [
+              "scoreRejected",
+              20851
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              206126
+            ],
+            [
+              "lowerBoundRejected",
+              62444
+            ],
+            [
+              "candidateQueued",
+              51858
+            ],
+            [
+              "bestCostRejected",
+              37453
+            ],
+            [
+              "scoreRejected",
+              20994
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              206126
+            ],
+            [
+              "lowerBoundRejected",
+              62444
+            ],
+            [
+              "candidateQueued",
+              51858
+            ],
+            [
+              "bestCostRejected",
+              37453
+            ],
+            [
+              "scoreRejected",
+              20994
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 339977,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7678246
+            ],
+            [
+              "lowerBoundRejected",
+              3205233
+            ],
+            [
+              "candidateQueued",
+              1468083
+            ],
+            [
+              "scoreRejected",
+              915916
+            ],
+            [
+              "differentNetRegionReservation",
+              787660
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1370,
+      "name": "source_net_291_mst6",
+      "graphIterations": 363928,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 339928,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              207559
+            ],
+            [
+              "lowerBoundRejected",
+              53656
+            ],
+            [
+              "candidateQueued",
+              43186
+            ],
+            [
+              "scoreRejected",
+              30859
+            ],
+            [
+              "bestCostRejected",
+              29266
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              207193
+            ],
+            [
+              "lowerBoundRejected",
+              54545
+            ],
+            [
+              "candidateQueued",
+              43949
+            ],
+            [
+              "scoreRejected",
+              31503
+            ],
+            [
+              "bestCostRejected",
+              29083
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              207193
+            ],
+            [
+              "lowerBoundRejected",
+              54545
+            ],
+            [
+              "candidateQueued",
+              43949
+            ],
+            [
+              "scoreRejected",
+              31503
+            ],
+            [
+              "bestCostRejected",
+              29083
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 339928,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7674869
+            ],
+            [
+              "lowerBoundRejected",
+              3239715
+            ],
+            [
+              "candidateQueued",
+              1437877
+            ],
+            [
+              "scoreRejected",
+              920932
+            ],
+            [
+              "differentNetRegionReservation",
+              786474
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1363,
+      "name": "source_net_310_mst6",
+      "graphIterations": 363580,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 339580,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              196631
+            ],
+            [
+              "lowerBoundRejected",
+              58072
+            ],
+            [
+              "candidateQueued",
+              42189
+            ],
+            [
+              "bestCostRejected",
+              26168
+            ],
+            [
+              "scoreRejected",
+              25905
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              195269
+            ],
+            [
+              "lowerBoundRejected",
+              58214
+            ],
+            [
+              "candidateQueued",
+              43033
+            ],
+            [
+              "scoreRejected",
+              26307
+            ],
+            [
+              "bestCostRejected",
+              25945
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              195269
+            ],
+            [
+              "lowerBoundRejected",
+              58214
+            ],
+            [
+              "candidateQueued",
+              43033
+            ],
+            [
+              "scoreRejected",
+              26307
+            ],
+            [
+              "bestCostRejected",
+              25945
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 339580,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7672917
+            ],
+            [
+              "lowerBoundRejected",
+              3267823
+            ],
+            [
+              "candidateQueued",
+              1433327
+            ],
+            [
+              "scoreRejected",
+              915979
+            ],
+            [
+              "differentNetRegionReservation",
+              786200
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1490,
+      "name": "source_net_319_mst5",
+      "graphIterations": 362846,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 338846,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              264848
+            ],
+            [
+              "lowerBoundRejected",
+              85578
+            ],
+            [
+              "scoreRejected",
+              45009
+            ],
+            [
+              "candidateQueued",
+              40147
+            ],
+            [
+              "bestCostRejected",
+              30003
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              262136
+            ],
+            [
+              "lowerBoundRejected",
+              87797
+            ],
+            [
+              "scoreRejected",
+              50528
+            ],
+            [
+              "candidateQueued",
+              45941
+            ],
+            [
+              "bestCostRejected",
+              27359
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              261640
+            ],
+            [
+              "lowerBoundRejected",
+              88620
+            ],
+            [
+              "scoreRejected",
+              51032
+            ],
+            [
+              "candidateQueued",
+              47002
+            ],
+            [
+              "bestCostRejected",
+              27187
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 338846,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7667092
+            ],
+            [
+              "lowerBoundRejected",
+              3173662
+            ],
+            [
+              "candidateQueued",
+              1396905
+            ],
+            [
+              "scoreRejected",
+              1030333
+            ],
+            [
+              "differentNetRegionReservation",
+              777852
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1391,
+      "name": "source_net_242_mst6",
+      "graphIterations": 362550,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 338550,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              215159
+            ],
+            [
+              "lowerBoundRejected",
+              57639
+            ],
+            [
+              "candidateQueued",
+              41517
+            ],
+            [
+              "scoreRejected",
+              40263
+            ],
+            [
+              "differentNetRegionReservation",
+              24279
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              204899
+            ],
+            [
+              "lowerBoundRejected",
+              54564
+            ],
+            [
+              "candidateQueued",
+              42430
+            ],
+            [
+              "scoreRejected",
+              39961
+            ],
+            [
+              "differentNetRegionReservation",
+              25009
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              204899
+            ],
+            [
+              "lowerBoundRejected",
+              54564
+            ],
+            [
+              "candidateQueued",
+              42430
+            ],
+            [
+              "scoreRejected",
+              39961
+            ],
+            [
+              "differentNetRegionReservation",
+              25009
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 338550,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7660482
+            ],
+            [
+              "lowerBoundRejected",
+              3190762
+            ],
+            [
+              "candidateQueued",
+              1428853
+            ],
+            [
+              "scoreRejected",
+              960263
+            ],
+            [
+              "differentNetRegionReservation",
+              781884
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1377,
+      "name": "source_net_262_mst6",
+      "graphIterations": 362321,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 338321,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              247474
+            ],
+            [
+              "lowerBoundRejected",
+              96322
+            ],
+            [
+              "candidateQueued",
+              42000
+            ],
+            [
+              "scoreRejected",
+              34288
+            ],
+            [
+              "bestCostRejected",
+              28130
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              237891
+            ],
+            [
+              "lowerBoundRejected",
+              95479
+            ],
+            [
+              "candidateQueued",
+              43164
+            ],
+            [
+              "scoreRejected",
+              34465
+            ],
+            [
+              "bestCostRejected",
+              26941
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              237894
+            ],
+            [
+              "lowerBoundRejected",
+              95582
+            ],
+            [
+              "candidateQueued",
+              43237
+            ],
+            [
+              "scoreRejected",
+              34490
+            ],
+            [
+              "bestCostRejected",
+              26942
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 338321,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7656972
+            ],
+            [
+              "lowerBoundRejected",
+              3275866
+            ],
+            [
+              "candidateQueued",
+              1401137
+            ],
+            [
+              "scoreRejected",
+              940576
+            ],
+            [
+              "differentNetRegionReservation",
+              782110
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1384,
+      "name": "source_net_252_mst6",
+      "graphIterations": 361539,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 337539,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              252214
+            ],
+            [
+              "lowerBoundRejected",
+              96883
+            ],
+            [
+              "candidateQueued",
+              40568
+            ],
+            [
+              "scoreRejected",
+              36221
+            ],
+            [
+              "bestCostRejected",
+              28728
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              249052
+            ],
+            [
+              "lowerBoundRejected",
+              98123
+            ],
+            [
+              "candidateQueued",
+              43089
+            ],
+            [
+              "scoreRejected",
+              39705
+            ],
+            [
+              "bestCostRejected",
+              28991
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              249052
+            ],
+            [
+              "lowerBoundRejected",
+              98124
+            ],
+            [
+              "candidateQueued",
+              43203
+            ],
+            [
+              "scoreRejected",
+              39742
+            ],
+            [
+              "bestCostRejected",
+              28991
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 337539,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7643757
+            ],
+            [
+              "lowerBoundRejected",
+              3274062
+            ],
+            [
+              "candidateQueued",
+              1391635
+            ],
+            [
+              "scoreRejected",
+              964908
+            ],
+            [
+              "differentNetRegionReservation",
+              779733
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1478,
+      "name": "source_net_337_mst5",
+      "graphIterations": 360326,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 336326,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              240478
+            ],
+            [
+              "lowerBoundRejected",
+              71364
+            ],
+            [
+              "candidateQueued",
+              41597
+            ],
+            [
+              "scoreRejected",
+              40699
+            ],
+            [
+              "bestCostRejected",
+              31088
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              270107
+            ],
+            [
+              "lowerBoundRejected",
+              75162
+            ],
+            [
+              "scoreRejected",
+              59655
+            ],
+            [
+              "candidateQueued",
+              49823
+            ],
+            [
+              "bestCostRejected",
+              30047
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              268166
+            ],
+            [
+              "lowerBoundRejected",
+              79599
+            ],
+            [
+              "scoreRejected",
+              60855
+            ],
+            [
+              "candidateQueued",
+              54510
+            ],
+            [
+              "bestCostRejected",
+              30077
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 336326,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7631363
+            ],
+            [
+              "lowerBoundRejected",
+              3199703
+            ],
+            [
+              "candidateQueued",
+              1392836
+            ],
+            [
+              "scoreRejected",
+              1016061
+            ],
+            [
+              "differentNetRegionReservation",
+              772238
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1514,
+      "name": "source_net_271_mst5",
+      "graphIterations": 359692,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 335692,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              259396
+            ],
+            [
+              "lowerBoundRejected",
+              85400
+            ],
+            [
+              "scoreRejected",
+              46205
+            ],
+            [
+              "candidateQueued",
+              35612
+            ],
+            [
+              "neighborOutOfCorridor",
+              23589
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              242261
+            ],
+            [
+              "lowerBoundRejected",
+              76471
+            ],
+            [
+              "scoreRejected",
+              51836
+            ],
+            [
+              "candidateQueued",
+              38742
+            ],
+            [
+              "bestCostRejected",
+              20210
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              238772
+            ],
+            [
+              "lowerBoundRejected",
+              75941
+            ],
+            [
+              "scoreRejected",
+              55031
+            ],
+            [
+              "candidateQueued",
+              40187
+            ],
+            [
+              "bestCostRejected",
+              18976
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 335692,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7619632
+            ],
+            [
+              "lowerBoundRejected",
+              3123885
+            ],
+            [
+              "candidateQueued",
+              1379560
+            ],
+            [
+              "scoreRejected",
+              1041414
+            ],
+            [
+              "differentNetRegionReservation",
+              770183
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1603,
+      "name": "source_net_634_mst3",
+      "graphIterations": 356575,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 332575,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              234209
+            ],
+            [
+              "lowerBoundRejected",
+              72863
+            ],
+            [
+              "candidateQueued",
+              46149
+            ],
+            [
+              "scoreRejected",
+              42739
+            ],
+            [
+              "bestCostRejected",
+              26597
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              212060
+            ],
+            [
+              "lowerBoundRejected",
+              69111
+            ],
+            [
+              "candidateQueued",
+              40326
+            ],
+            [
+              "scoreRejected",
+              35515
+            ],
+            [
+              "differentNetRegionReservation",
+              23187
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              211279
+            ],
+            [
+              "lowerBoundRejected",
+              69897
+            ],
+            [
+              "candidateQueued",
+              40154
+            ],
+            [
+              "scoreRejected",
+              35505
+            ],
+            [
+              "differentNetRegionReservation",
+              23246
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 332575,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7573057
+            ],
+            [
+              "lowerBoundRejected",
+              3018002
+            ],
+            [
+              "candidateQueued",
+              1363489
+            ],
+            [
+              "scoreRejected",
+              1125405
+            ],
+            [
+              "differentNetRegionReservation",
+              756438
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1623,
+      "name": "source_net_289_mst3",
+      "graphIterations": 354957,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 330957,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              242241
+            ],
+            [
+              "lowerBoundRejected",
+              65257
+            ],
+            [
+              "scoreRejected",
+              45638
+            ],
+            [
+              "candidateQueued",
+              44350
+            ],
+            [
+              "bestCostRejected",
+              28473
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              235956
+            ],
+            [
+              "lowerBoundRejected",
+              65320
+            ],
+            [
+              "candidateQueued",
+              47537
+            ],
+            [
+              "scoreRejected",
+              46762
+            ],
+            [
+              "bestCostRejected",
+              29183
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              235956
+            ],
+            [
+              "lowerBoundRejected",
+              65320
+            ],
+            [
+              "candidateQueued",
+              47537
+            ],
+            [
+              "scoreRejected",
+              46762
+            ],
+            [
+              "bestCostRejected",
+              29183
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 330957,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7550456
+            ],
+            [
+              "lowerBoundRejected",
+              2912261
+            ],
+            [
+              "candidateQueued",
+              1380153
+            ],
+            [
+              "scoreRejected",
+              1132597
+            ],
+            [
+              "differentNetRegionReservation",
+              753290
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1611,
+      "name": "source_net_555_mst3",
+      "graphIterations": 353932,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 329932,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              190781
+            ],
+            [
+              "lowerBoundRejected",
+              63122
+            ],
+            [
+              "neighborOutOfCorridor",
+              33067
+            ],
+            [
+              "candidateQueued",
+              32885
+            ],
+            [
+              "scoreRejected",
+              16982
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              214850
+            ],
+            [
+              "lowerBoundRejected",
+              76124
+            ],
+            [
+              "candidateQueued",
+              41293
+            ],
+            [
+              "scoreRejected",
+              33097
+            ],
+            [
+              "bestCostRejected",
+              19042
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              214853
+            ],
+            [
+              "lowerBoundRejected",
+              83050
+            ],
+            [
+              "candidateQueued",
+              44200
+            ],
+            [
+              "scoreRejected",
+              35017
+            ],
+            [
+              "bestCostRejected",
+              19116
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 329932,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7547417
+            ],
+            [
+              "lowerBoundRejected",
+              3098584
+            ],
+            [
+              "candidateQueued",
+              1358107
+            ],
+            [
+              "scoreRejected",
+              1109483
+            ],
+            [
+              "differentNetRegionReservation",
+              752528
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1705,
+      "name": "source_net_557_mst0",
+      "graphIterations": 351623,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 327623,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              185958
+            ],
+            [
+              "lowerBoundRejected",
+              52269
+            ],
+            [
+              "neighborOutOfCorridor",
+              37834
+            ],
+            [
+              "candidateQueued",
+              32242
+            ],
+            [
+              "scoreRejected",
+              17876
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              207051
+            ],
+            [
+              "lowerBoundRejected",
+              69991
+            ],
+            [
+              "candidateQueued",
+              41141
+            ],
+            [
+              "scoreRejected",
+              27223
+            ],
+            [
+              "bestCostRejected",
+              19010
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              212178
+            ],
+            [
+              "lowerBoundRejected",
+              81678
+            ],
+            [
+              "candidateQueued",
+              45274
+            ],
+            [
+              "scoreRejected",
+              29037
+            ],
+            [
+              "bestCostRejected",
+              19725
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 327623,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              7512280
+            ],
+            [
+              "lowerBoundRejected",
+              3009063
+            ],
+            [
+              "candidateQueued",
+              1344462
+            ],
+            [
+              "scoreRejected",
+              1147885
+            ],
+            [
+              "differentNetRegionReservation",
+              741960
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1707,
+      "name": "source_net_557_mst2",
+      "graphIterations": 117610,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 93610,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              193666
+            ],
+            [
+              "lowerBoundRejected",
+              60880
+            ],
+            [
+              "candidateQueued",
+              45215
+            ],
+            [
+              "scoreRejected",
+              36134
+            ],
+            [
+              "bestCostRejected",
+              18659
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              210765
+            ],
+            [
+              "lowerBoundRejected",
+              65968
+            ],
+            [
+              "candidateQueued",
+              52939
+            ],
+            [
+              "scoreRejected",
+              41493
+            ],
+            [
+              "bestCostRejected",
+              24511
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              210765
+            ],
+            [
+              "lowerBoundRejected",
+              66318
+            ],
+            [
+              "candidateQueued",
+              53207
+            ],
+            [
+              "scoreRejected",
+              41493
+            ],
+            [
+              "bestCostRejected",
+              24511
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 93610,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              2373033
+            ],
+            [
+              "lowerBoundRejected",
+              836299
+            ],
+            [
+              "scoreRejected",
+              447638
+            ],
+            [
+              "candidateQueued",
+              437338
+            ],
+            [
+              "bestCostRejected",
+              205919
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1576,
+      "name": "source_net_469_mst4",
+      "graphIterations": 67418,
+      "succeeded": true,
+      "localIterations": 22515,
+      "unrestrictedIterations": 44903,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 6515,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              142605
+            ],
+            [
+              "neighborOutOfCorridor",
+              40902
+            ],
+            [
+              "lowerBoundRejected",
+              28289
+            ],
+            [
+              "candidateQueued",
+              23265
+            ],
+            [
+              "bestCostRejected",
+              17413
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              189609
+            ],
+            [
+              "candidateQueued",
+              50179
+            ],
+            [
+              "lowerBoundRejected",
+              49324
+            ],
+            [
+              "bestCostRejected",
+              25915
+            ],
+            [
+              "scoreRejected",
+              23119
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              189605
+            ],
+            [
+              "candidateQueued",
+              56859
+            ],
+            [
+              "lowerBoundRejected",
+              53480
+            ],
+            [
+              "bestCostRejected",
+              26246
+            ],
+            [
+              "scoreRejected",
+              24360
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 44903,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              1040619
+            ],
+            [
+              "lowerBoundRejected",
+              286719
+            ],
+            [
+              "candidateQueued",
+              254614
+            ],
+            [
+              "scoreRejected",
+              187379
+            ],
+            [
+              "bestCostRejected",
+              125709
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1674,
+      "name": "source_net_639_mst2",
+      "graphIterations": 58228,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 34228,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              190979
+            ],
+            [
+              "lowerBoundRejected",
+              59708
+            ],
+            [
+              "candidateQueued",
+              38915
+            ],
+            [
+              "scoreRejected",
+              30582
+            ],
+            [
+              "bestCostRejected",
+              19032
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              193382
+            ],
+            [
+              "lowerBoundRejected",
+              60509
+            ],
+            [
+              "candidateQueued",
+              39614
+            ],
+            [
+              "scoreRejected",
+              31217
+            ],
+            [
+              "bestCostRejected",
+              19860
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              193620
+            ],
+            [
+              "lowerBoundRejected",
+              62960
+            ],
+            [
+              "candidateQueued",
+              40665
+            ],
+            [
+              "scoreRejected",
+              33814
+            ],
+            [
+              "bestCostRejected",
+              20507
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 34228,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              793981
+            ],
+            [
+              "lowerBoundRejected",
+              263921
+            ],
+            [
+              "candidateQueued",
+              160614
+            ],
+            [
+              "scoreRejected",
+              122185
+            ],
+            [
+              "bestCostRejected",
+              76363
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1295,
+      "name": "source_net_626_mst7",
+      "graphIterations": 56967,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 32967,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              218882
+            ],
+            [
+              "lowerBoundRejected",
+              88043
+            ],
+            [
+              "candidateQueued",
+              39713
+            ],
+            [
+              "scoreRejected",
+              26484
+            ],
+            [
+              "bestCostRejected",
+              25596
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              227315
+            ],
+            [
+              "lowerBoundRejected",
+              97680
+            ],
+            [
+              "candidateQueued",
+              43953
+            ],
+            [
+              "scoreRejected",
+              33344
+            ],
+            [
+              "bestCostRejected",
+              24893
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              227815
+            ],
+            [
+              "lowerBoundRejected",
+              97965
+            ],
+            [
+              "candidateQueued",
+              44279
+            ],
+            [
+              "scoreRejected",
+              33450
+            ],
+            [
+              "bestCostRejected",
+              24888
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 32967,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              888853
+            ],
+            [
+              "lowerBoundRejected",
+              357391
+            ],
+            [
+              "candidateQueued",
+              167961
+            ],
+            [
+              "scoreRejected",
+              163257
+            ],
+            [
+              "bestCostRejected",
+              74092
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1571,
+      "name": "source_net_471_mst4",
+      "graphIterations": 56941,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 32941,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              180742
+            ],
+            [
+              "neighborOutOfCorridor",
+              39853
+            ],
+            [
+              "candidateQueued",
+              36954
+            ],
+            [
+              "lowerBoundRejected",
+              36634
+            ],
+            [
+              "scoreRejected",
+              20456
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              177366
+            ],
+            [
+              "lowerBoundRejected",
+              47600
+            ],
+            [
+              "candidateQueued",
+              47223
+            ],
+            [
+              "bestCostRejected",
+              25452
+            ],
+            [
+              "scoreRejected",
+              23393
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              177405
+            ],
+            [
+              "candidateQueued",
+              49318
+            ],
+            [
+              "lowerBoundRejected",
+              48388
+            ],
+            [
+              "bestCostRejected",
+              25499
+            ],
+            [
+              "scoreRejected",
+              24087
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 32941,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              772325
+            ],
+            [
+              "lowerBoundRejected",
+              229079
+            ],
+            [
+              "candidateQueued",
+              186371
+            ],
+            [
+              "scoreRejected",
+              130440
+            ],
+            [
+              "bestCostRejected",
+              90489
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "routeId": 1544,
+      "name": "source_net_224_mst5",
+      "graphIterations": 55739,
+      "succeeded": true,
+      "localIterations": 24000,
+      "unrestrictedIterations": 31739,
+      "fallbackUsed": true,
+      "accountingConsistent": true,
+      "windowReasons": [
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              212823
+            ],
+            [
+              "lowerBoundRejected",
+              57114
+            ],
+            [
+              "scoreRejected",
+              45044
+            ],
+            [
+              "candidateQueued",
+              37721
+            ],
+            [
+              "differentNetRegionReservation",
+              19217
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              208324
+            ],
+            [
+              "lowerBoundRejected",
+              60405
+            ],
+            [
+              "scoreRejected",
+              43708
+            ],
+            [
+              "candidateQueued",
+              38644
+            ],
+            [
+              "differentNetRegionReservation",
+              19157
+            ]
+          ]
+        },
+        {
+          "kind": "local",
+          "iterations": 8000,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              208327
+            ],
+            [
+              "lowerBoundRejected",
+              61514
+            ],
+            [
+              "scoreRejected",
+              43877
+            ],
+            [
+              "candidateQueued",
+              38935
+            ],
+            [
+              "differentNetRegionReservation",
+              19195
+            ]
+          ]
+        },
+        {
+          "kind": "unrestricted",
+          "iterations": 31739,
+          "mostFrequentReasons": [
+            [
+              "neighborScanned",
+              797607
+            ],
+            [
+              "lowerBoundRejected",
+              277112
+            ],
+            [
+              "candidateQueued",
+              150825
+            ],
+            [
+              "scoreRejected",
+              137750
+            ],
+            [
+              "bestCostRejected",
+              73615
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "activeRoute": {
+    "routeId": 1710,
+    "name": "source_net_529_mst2",
+    "graphIterations": 15369,
+    "succeeded": false,
+    "localIterations": 15369,
+    "unrestrictedIterations": 0,
+    "fallbackUsed": false,
+    "accountingConsistent": true,
+    "windowReasons": [
+      {
+        "kind": "local",
+        "iterations": 8000,
+        "mostFrequentReasons": [
+          [
+            "neighborScanned",
+            205759
+          ],
+          [
+            "lowerBoundRejected",
+            52757
+          ],
+          [
+            "candidateQueued",
+            38931
+          ],
+          [
+            "scoreRejected",
+            36349
+          ],
+          [
+            "bestCostRejected",
+            19715
+          ]
+        ]
+      },
+      {
+        "kind": "local",
+        "iterations": 7369,
+        "mostFrequentReasons": [
+          [
+            "neighborScanned",
+            190656
+          ],
+          [
+            "lowerBoundRejected",
+            54184
+          ],
+          [
+            "candidateQueued",
+            38313
+          ],
+          [
+            "scoreRejected",
+            36741
+          ],
+          [
+            "bestCostRejected",
+            18857
+          ]
+        ]
+      }
+    ]
+  },
+  "note": "Counters record decision branches, not mutually exclusive per-neighbor categories, and do not prove PCB connectivity/DRC. Top-route retention is bounded."
+}
