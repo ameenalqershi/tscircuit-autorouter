@@ -957,6 +957,11 @@ export class EscapeViaLocationSolver extends BaseSolver {
           y: escapeViaCandidate.y,
           layer: escapeViaCandidate.sourceLayer,
           pointId: escapeViaCandidate.pointId,
+          ...(escapeViaCandidate.sourcePointId
+            ? {
+                __planeEscapeSourcePointId: escapeViaCandidate.sourcePointId,
+              }
+            : {}),
           terminalVia: {
             toLayer: escapeViaCandidate.targetLayer,
             viaDiameter: this.viaDiameter,

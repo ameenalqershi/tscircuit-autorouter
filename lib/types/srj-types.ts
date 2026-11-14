@@ -29,6 +29,8 @@ export type SingleLayerConnectionPoint = {
   /** Stable semantic selector for the source port, e.g. `U1.USB_DM`. */
   port_selector?: string
   terminalVia?: TerminalViaHint
+  /** Internal hint: pad selected by the escape-via placer. NOT a pre-existing electrical connection. */
+  __planeEscapeSourcePointId?: PointId
 }
 /** A terminal accessible on multiple routing layers. Never carries `layer`. */
 export type MultiLayerConnectionPoint = {

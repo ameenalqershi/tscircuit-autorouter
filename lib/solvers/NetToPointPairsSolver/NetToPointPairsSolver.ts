@@ -5,6 +5,7 @@ import {
   PointId,
   SimpleRouteConnection,
   SimpleRouteJson,
+  isSingleLayerConnectionPoint,
 } from "lib/types"
 import { seededRandom } from "lib/utils/cloneAndShuffleArray"
 import { BaseSolver } from "../BaseSolver"
@@ -124,6 +125,39 @@ export class NetToPointPairsSolver extends BaseSolver {
     return edges
   }
 
+  /**
+   * The pour escape placer has checked a short physical path from this pad to
+   * its selected via. Include that option in the MST candidates even when the
+   * fixed-size nearest-neighbor search misses it in dense geometries.
+   * Unlike copper-plane equivalence edges, these are NOT zero-weight and
+   * MUST be physically routed; no connectivity is inferred by this hint.
+   */
+  getEscapeViaAnchorEdges(connection: SimpleRouteConnection): PathEdge[] {
+    const byPointId = new Map(
+      connection.pointsToConnect
+        .filter((point) => point.pointId)
+        .map((point) => [point.pointId!, point]),
+    )
+    const edges: PathEdge[] = []
+    for (const viaPoint of connection.pointsToConnect) {
+      if (!isSingleLayerConnectionPoint(viaPoint) || !viaPoint.terminalVia)
+        continue
+      const sourceId = viaPoint.__planeEscapeSourcePointId
+      if (!sourceId) continue
+      const pad = byPointId.get(sourceId)
+      if (!pad || pad === viaPoint) continue
+      if (!isSingleLayerConnectionPoint(pad) || pad.layer !== viaPoint.layer)
+        continue
+      edges.push({
+        from: pad,
+        to: viaPoint,
+        weight: Math.hypot(pad.x - viaPoint.x, pad.y - viaPoint.y),
+        hops: [],
+      })
+    }
+    return edges
+  }
+
   protected emitConnection(
     connection: SimpleRouteConnection,
     pathEdge?: PathEdge,
@@ -166,7 +200,11 @@ export class NetToPointPairsSolver extends BaseSolver {
     }
 
     const edges = buildMinimumSpanningTree(connection.pointsToConnect, {
-      extraEdges: [...pathEdges, ...zeroWeightEdges],
+      extraEdges: [
+        ...pathEdges,
+        ...zeroWeightEdges,
+        ...this.getEscapeViaAnchorEdges(connection),
+      ],
     })
 
     let mstIdx = 0
