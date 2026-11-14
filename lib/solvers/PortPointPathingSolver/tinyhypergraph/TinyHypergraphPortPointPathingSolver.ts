@@ -1195,6 +1195,12 @@ export class TinyHypergraphPortPointPathingSolver extends BaseSolver {
         LOCAL_ROUTE_CORRIDOR_WINDOW_ITERATIONS: config.windowIterations,
       }
     }
+    if (params.flags.PROGRESSIVE_STATIC_FRONTIER_PRUNING === true) {
+      tinyPipelineInput.solveGraphOptions = {
+        ...tinyPipelineInput.solveGraphOptions,
+        PRUNE_STATIC_FRONTIER_REJECTIONS: true,
+      }
+    }
     if (params.flags.PROGRESSIVE_ROUTE_DIAGNOSTICS === true) {
       tinyPipelineInput.solveGraphOptions = {
         ...tinyPipelineInput.solveGraphOptions,

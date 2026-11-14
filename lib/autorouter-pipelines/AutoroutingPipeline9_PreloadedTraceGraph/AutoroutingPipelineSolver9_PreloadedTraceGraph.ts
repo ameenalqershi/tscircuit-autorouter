@@ -119,6 +119,8 @@ interface CapacityMeshSolverOptions {
   captureSearchDebug?: boolean
   /** Experimental opt-in only; leaves all existing routing unchanged by default. */
   progressiveRouteDiagnostics?: boolean
+  /** Experimental: cache immutable rejected ports per active route frontier. */
+  progressiveStaticFrontierPruning?: boolean
   progressiveRouteCorridor?: {
     initialMarginMm: number
     growthFactor?: number
@@ -565,6 +567,8 @@ export class AutoroutingPipelineSolver9_PreloadedTraceGraph extends BaseSolver {
               PROGRESSIVE_ROUTE_CORRIDOR: cms.opts.progressiveRouteCorridor,
               PROGRESSIVE_ROUTE_DIAGNOSTICS:
                 cms.opts.progressiveRouteDiagnostics,
+              PROGRESSIVE_STATIC_FRONTIER_PRUNING:
+                cms.opts.progressiveStaticFrontierPruning,
               USE_PARTIAL_RIP_ROUTING_WITH_PRELOADED_TRACES: true,
             },
             weights: {
