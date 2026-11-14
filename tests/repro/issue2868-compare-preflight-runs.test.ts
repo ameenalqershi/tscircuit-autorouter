@@ -43,3 +43,15 @@ test("never marks failed experiment fully qualified even with progress improveme
   expect(d.identicalQualifiedOutput).toBe(false)
   expect(d.experiment.failed).toBe(true)
 })
+
+test("recognizes the full original 684-connection SHA without claiming graph-only success", () => {
+  const original =
+    "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca"
+  const d = comparePreflightRuns(
+    run(original, 8000000, false),
+    run(original, 8000000, false),
+  )
+  expect(d.sourceConnections).toBe(1) // synthetic log only; not real-board evidence
+  expect(d.inputSha256).toBe(original)
+  expect(d.fullBoardQualified).toBe(false)
+})

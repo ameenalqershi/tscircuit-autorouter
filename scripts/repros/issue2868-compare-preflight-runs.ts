@@ -1,6 +1,7 @@
 /** Exact-source benchmark comparator; never interprets graph progress as PCB DRC. */
 import { readFileSync } from "node:fs"
-const original = "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58fd2f8f11d28ca"
+const original =
+  "471334fad7b86e550ad1e5b9aae796665957512c78d6cc58f58fd2f8f11d28ca"
 const onePair =
   "ba7fde466d17743a711573f6d7bbd38f6861efc3672524f0373600452129e071"
 export function comparePreflightRuns(
